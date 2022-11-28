@@ -87,6 +87,12 @@
 #define SOFTSERIAL_1_RX_PIN     PA8 // LED pad
 #define SERIAL_PORT_COUNT       4
 
+#elif defined(MATEKF411_6PWM_FD_SFTSRL)
+#define USE_SOFTSERIAL1
+#define SOFTSERIAL_1_TX_PIN     PA0 // ST1 pad
+#define SOFTSERIAL_1_RX_PIN     PA8 // LED pad
+#define SERIAL_PORT_COUNT       4
+
 #elif defined(MATEKF411_RSSI)
 #define USE_SOFTSERIAL1
 #define SOFTSERIAL_1_TX_PIN     PA8 // LED pad
@@ -150,7 +156,11 @@
 // *************** LED2812 ************************
 #if !defined(MATEKF411_SFTSRL2) && !defined(MATEKF411_RSSI) && !defined(MATEKF411_FD_SFTSRL)
 #define USE_LED_STRIP
+#if defined(MATEKF411_6PWM_FD_SFTSRL)
+#define WS2811_PIN                      PA15
+#else
 #define WS2811_PIN                      PA8
+#endif
 #endif
 // ***************  OTHERS *************************
 #define DEFAULT_FEATURES        (FEATURE_TX_PROF_SEL | FEATURE_OSD | FEATURE_CURRENT_METER | FEATURE_VBAT | FEATURE_TELEMETRY | FEATURE_SOFTSERIAL )
@@ -168,4 +178,8 @@
 #define TARGET_IO_PORTC         0xffff
 #define TARGET_IO_PORTD         (BIT(2))
 
+#if defined(MATEKF411_6PWM_FD_SFTSRL)
+#define MAX_PWM_OUTPUT_PORTS       6
+#else
 #define MAX_PWM_OUTPUT_PORTS       7
+#endif
