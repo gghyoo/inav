@@ -93,6 +93,16 @@
 #define SOFTSERIAL_1_RX_PIN     PA8 // LED pad
 #define SERIAL_PORT_COUNT       4
 
+#elif defined(MATEKF411_6PWM_SFTSRL2)
+#define USE_SOFTSERIAL1
+#define SOFTSERIAL_1_TX_PIN     PA0 // ST1 pad
+#define SOFTSERIAL_1_RX_PIN     PA0
+#define USE_SOFTSERIAL2
+#define SOFTSERIAL_2_TX_PIN     PA15 // PWM7 pad
+#define SOFTSERIAL_2_RX_PIN     PA15
+#define SERIAL_PORT_COUNT       5
+
+
 #elif defined(MATEKF411_RSSI)
 #define USE_SOFTSERIAL1
 #define SOFTSERIAL_1_TX_PIN     PA8 // LED pad
@@ -178,7 +188,7 @@
 #define TARGET_IO_PORTC         0xffff
 #define TARGET_IO_PORTD         (BIT(2))
 
-#if defined(MATEKF411_6PWM_FD_SFTSRL)
+#if defined(MATEKF411_6PWM_FD_SFTSRL) || defined(MATEKF411_6PWM_SFTSRL2)
 #define MAX_PWM_OUTPUT_PORTS       6
 #else
 #define MAX_PWM_OUTPUT_PORTS       7
